@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body>
+        <div class="container">
+            <input id="tennguoi" type="text" placeholder="NhậpTên">
+            <input id="sokw" type="number" min="0" max="100000" placeholder="Số KW">
+            <button id="btn-tiendien">Tinh</button>
+        </div>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script>
+
+            document.getElementById("btn-tiendien").onclick = function tinhTienDien() {
+                
+                var tennguoi = document.getElementById("tennguoi").value;
+                var sokw = document.getElementById("sokw").value*1;
+                var tien = 0;
+                if (sokw <= 50) {
+                    tien = sokw * 500;
+            } else if (sokw> 50 &&sokw <= 100) {
+                tien = 50 * 500 + (sokw - 50) * 650;
+            } else if (sokw > 100 && sokw <= 200) {
+                tien = 50*500 + 50*650 + (sokw - 100) * 850;
+            } else if (sokw > 200 && sokw <= 350) {
+                tien = 50*500 + 50*650 + 100*850 + (sokw - 200) * 1100;
+                
+            } else if (sokw > 350) {
+                tien = 50*500 + 50*650 + 100*850 + 100*1100 + (sokw - 350) * 1300;
+            }
+                    tien = tien.toLocaleString('en-US');
+            
+
+            console.log(`Tên Người là ${tennguoi} , số tiền điện là ${tien} `);
+            alert(`Tên Người là ${tennguoi} , số tiền điện là ${tien} `);
+            
+        }
+        </script>
+    </body>
+</html>

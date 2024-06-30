@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>quản lý học sinh</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS v5.2.1 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <style>
+      table {
+        width: 50%;
+        margin: 20px auto;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: center;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+      .result {
+        text-align: center;
+        margin-top: 20px;
+      }
+      #h2 {
+        margin-top: 20px;
+      }
+      #ul {
+        margin-top: 10px;
+      }
+      .radio-group {
+        display: flex;
+        justify-content: space-around;
+      }
+    </style>
+  </head>
+
+  <body>
+    <table style="text-align: center">
+      <tr style="text-align: center">
+        <th>Môn 1</th>
+        <th>Môn 2</th>
+        <th>Môn 3</th>
+        <th>Khu vực</th>
+        <th>Đối tượng</th>
+      </tr>
+      <td><input type="number" id="mon1" min="0" max="10" /></td>
+      <td><input type="number" id="mon2" min="0" max="10" /></td>
+      <td><input type="number" id="mon3" min="0" max="10" /></td>
+      <td>
+        <div class="radio-group">
+          <label><input name="khuvuc" value="0" type="radio" />KV0</label>
+          <label><input name="khuvuc" value="2" type="radio" />KVA</label>
+          <label><input name="khuvuc" value="1" type="radio" />KVB</label>
+          <label><input name="khuvuc" value="0.5" type="radio" />KVC</label>
+        </div>
+      </td>
+      <td>
+        <div class="radio-group2">
+          <label><input name="doituong" value="1" type="radio" />HN</label>
+          <label><input name="doituong" value="1.5" type="radio" />HSNVK</label>
+          <label><input name="doituong" value="2.5" type="radio" />KT</label>
+        </div>
+      </td>
+    </table>
+    <br />
+    <div class="reasul">
+      <button
+        id="btn"
+        class="btn btn-primary p-md-3"
+        style="position: relative; top: 50%; left: 50%"
+      >
+        Tinh diem
+      </button>
+      <br />
+      <br />
+      <h3 style="text-align: center">
+       <span id="ketqua">10 điểm</span>
+      </h3>
+    </div>
+    <div class="cactruong">
+      <h2 id="h2" style="display: none">
+        Danh sách các trường đại học có điểm chuẩn 25 điểm:
+      </h2>
+      <ul id="ul" style="display: none">
+        <li>Trường Đại học Sư phạm Hà Nội</li>
+        <li>Trường Đại học Sư phạm Thành phố Hồ Chí Minh</li>
+        <li>Trường Đại học Sư phạm Đà Nẵng</li>
+        <li>Trường Đại học Sư phạm Kỹ thuật</li>
+        <li>Trường Đại học Sư phạm Kỹ thuật Hưng Yên</li>
+      </ul>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+      integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+      integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+       
+      function tinhDiem() {
+        // tạo hàm tính didemr lấy các giá trị từ o inout
+        var mon1 = parseFloat(document.getElementById("mon1").value) || 0;
+        var mon2 = parseFloat(document.getElementById("mon2").value) || 0;
+        var mon3 = parseFloat(document.getElementById("mon3").value) || 0;
+        var khuvuc = parseFloat(document.querySelector('input[name="khuvuc"]:checked')?.value || 0);
+        var doituong = parseFloat(document.querySelector('input[name="doituong"]:checked')?.value || 0);
+        var h2 = document.getElementById("h2");
+        var ul = document.getElementById("ul");
+        // xử lý cộng tổng tất cả các điều kiện 
+
+        var tongdiem = mon1 + mon2 + mon3 + khuvuc + doituong;
+        // methor tofixed lấy 2 số thập phân sau dấu phẩy
+        tongdiem = tongdiem.toFixed(2);
+        document.getElementById("ketqua").innerText = ketqua;
+        
+        var diemchuan = 25; // Điểm chuẩn là 25
+        // if ef điều kiện
+        if (tongdiem>=diemchuan && mon1 >0 && mon2 >0 && mon3 >0) {
+            document.getElementById("ketqua").innerText = `Bạn Được ${tongdiem} điểm, điểm chuẩn ${diemchuan} điểm., bạn đã đỗ`;
+          h2.style.display = "block";
+          ul.style.display = "block";
+        } else {
+          document.getElementById("ketqua").innerText = `Bạn Được ${tongdiem} điểm, điểm chuẩn ${diemchuan} điểm., bạn đã rớt`;
+            
+            h2.style.display = "none";
+            ul.style.display = "none";
+        }
+      }
+      document.getElementById("btn").onclick = tinhDiem;
+
+    </script>
+
+  </body>
+</html>
